@@ -492,7 +492,7 @@ class btree
      * @param array node
      * @return string
      */
-    private static function serialize($type, array $node)
+    protected static function serialize($type, array $node)
     {
         return $type . serialize($node);
     }
@@ -503,7 +503,7 @@ class btree
      * @param string serialized node
      * @return array
      */
-    private static function unserialize($str)
+    protected static function unserialize($str)
     {
         return array(substr($str, 0, 2), unserialize(substr($str, 2)));
     }
@@ -514,7 +514,7 @@ class btree
      * @param int root position
      * @return bool
      */
-    private static function header($handle, $root)
+    protected static function header($handle, $root)
     {
         $to_write = pack('N', $root) . self::HEADER;
         return fwrite($handle, $to_write, strlen($to_write)) === strlen($to_write);
